@@ -185,5 +185,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
+    "https://jyothi2582.github.io",
 ]
+
 CORS_URLS_REGEX = r"^/(api|media)/.*$"
