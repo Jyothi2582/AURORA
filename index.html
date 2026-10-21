@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURORA — Beyond Sound</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+
+  <div class="aurora-background"></div>
+  <div class="background-overlay"></div>
+  <div class="particles" id="particles"></div>
+
+  <main class="app-shell">
+
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">♫</span>
+        <span class="brand-copy">
+          <strong>AURORA</strong>
+          <small>BEYOND SOUND</small>
+        </span>
+      </a>
+
+      <div class="topbar-right">
+        <span class="live-indicator">
+          <span></span> AUDIO REACTIVE
+        </span>
+        <button id="themeButton" class="icon-button" type="button">◈</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">✦ YOUR SOUND, REIMAGINED</div>
+      <h1>Feel the sound<br><span>Music Heals</span></h1>
+      <p>Turn your favorite tracks into a living galaxy of color, light, and motion.</p>
+    </section>
+
+    <section class="workspace">
+
+      <section class="panel upload-panel">
+        <div class="section-heading">
+          <h2><span>01</span> Bring your music</h2>
+          <small>LOCAL AUDIO</small>
+        </div>
+
+        <label class="upload-box" id="uploadBox" for="audioUpload">
+          <span class="upload-orbit">♫</span>
+          <strong id="uploadTitle">Drop a track into the universe</strong>
+          <span id="uploadSubtitle">or browse files from your device</span>
+          <span class="file-types">MP3 · WAV · OGG · M4A</span>
+          <input id="audioUpload" type="file" accept="audio/*" hidden>
+        </label>
+
+        <div class="file-status">
+          <span class="status-dot" id="fileStatusDot"></span>
+          <span id="fileStatus">Waiting for your first track</span>
+        </div>
+
+        <button id="saveSongButton" class="save-song-button" type="button">
+          𝅘𝅥𝅮 Save to My Music
+        </button>
+      </section>
+
+      <section class="panel visual-panel">
+        <div class="section-heading">
+          <h2><span>02</span> Choose your universe</h2>
+          <small>LIVE VISUALIZER</small>
+        </div>
+
+        <div class="visualizer-card">
+          <div class="visualizer-topline">
+            <span>● LIVE FREQUENCY</span>
+            <span id="visualizerModeLabel">SPECTRUM MODE</span>
+          </div>
+
+          <canvas id="visualizerCanvas"></canvas>
+
+          <div class="visualizer-placeholder" id="visualizerPlaceholder">
+            <div class="placeholder-orbit">♫</div>
+            <strong>Your galaxy is waiting</strong>
+            <span>Upload a track, then press play</span>
+          </div>
+
+          <div class="visualizer-bottomline">
+            <span>LOW · MID · HIGH</span>
+            <span id="audioState">STANDBY</span>
+          </div>
+        </div>
+
+        <div class="mode-row">
+          <button class="mode-button active" data-mode="bars" type="button">
+            ▥ Spectrum
+          </button>
+          <button class="mode-button" data-mode="circle" type="button">
+            ◉ Galaxy
+          </button>
+          <button class="mode-button" data-mode="wave" type="button">
+            ∿ Waveform
+          </button>
+        </div>
+      </section>
+
+      <section class="panel player-panel">
+        <div class="section-heading">
+          <h2><span>03</span> Control the flow</h2>
+          <small>YOUR SESSION</small>
+        </div>
+
+        <div class="track-row">
+          <div class="track-art">♫</div>
+
+          <div class="track-info">
+            <strong id="trackName">No track selected</strong>
+            <span id="trackMeta">Your next favorite starts here</span>
+          </div>
+
+          <span class="track-badge" id="trackBadge">READY</span>
+        </div>
+
+        <audio id="audioPlayer" preload="metadata"></audio>
+
+        <div class="timeline">
+          <span id="currentTime">0:00</span>
+          <input id="progressBar" type="range" min="0" max="100" value="0" step="0.1">
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="player-actions">
+          <button id="restartButton" class="small-control" type="button">↺</button>
+          <button id="playButton" class="play-button" type="button">▶</button>
+          <button id="stopButton" class="small-control" type="button">■</button>
+
+          <div class="volume-control">
+            <span>♪</span>
+            <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.8">
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sensitivity-row">
+          <div>
+            <strong>Visual sensitivity</strong>
+            <span>How strongly visuals react to sound</span>
+          </div>
+          <span id="sensitivityValue">70%</span>
+        </div>
+
+        <input id="sensitivitySlider" class="sensitivity-slider" type="range" min="20" max="150" value="70">
+      </section>
+
+    </section>
+
+    <section class="panel music-library">
+      <div class="section-heading">
+        <h2><span>04</span> My Music Library</h2>
+        <small id="libraryCount">0 SAVED SONGS</small>
+      </div>
+
+      <p class="library-description">
+        Your personal collection, saved in this browser.
+      </p>
+
+      <div id="songList" class="song-list">
+        <p class="empty-message">Your music universe is waiting...</p>
+      </div>
+    </section>
+
+    <section class="music-library">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div>
+          <h2>✦ AURORA SHARED SONGS</h2>
+          <p>Songs available to everyone</p>
+        </div>
+      </div>
+
+      <div id="sharedSongList" class="song-list">
+        <p class="empty-message">
+          Shared songs will be available after the new backend is connected.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <span>✦ MADE FOR THE LOVE OF SOUND</span>
+      <span>YOUR MUSIC STAYS ON YOUR DEVICE</span>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
