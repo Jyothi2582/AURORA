@@ -807,7 +807,7 @@ async function loadSharedSongs() {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/api/songs/shared/"
+      "https://aurora-backend-opf0.onrender.com/api/songs/shared/"
     );
 
     if (!response.ok) {
